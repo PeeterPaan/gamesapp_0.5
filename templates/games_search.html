@@ -1,0 +1,154 @@
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+    rel="stylesheet" type="text/css">
+  </head>
+    <script>
+function myFunction() {
+    // Declare variables
+    var input, filter, ul, li, a, i;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName('li');
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("h3")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+    </script>
+
+  <body style="padding-bottom: 70px;">
+    <div class="navbar-inverse navbar-default navbar-static-top">
+      <div class="container"style="color: #427A9E">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/welcome"><span>GamesSapp</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+          <ul class="nav navbar-nav">
+        <li><a href="/table"> Table</a></li>
+        <li><a href="/whatulike">Whatulike</a></li>
+
+
+          </ul>
+        </li>
+      </ul>
+            <ul class="nav navbar-nav navbar-right">
+          {% if login %}
+            <p class="navbar-text">Signed in as {{ login }}</p>
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+
+          {% else %}
+            <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h1 class="text-center">Search</h1>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-offset-3 col-md-6">
+                    <form role="form">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="GameName">
+
+                          <span class="input-group-btn">
+                            <a class="btn btn-default" type="submit">Go</a>
+                          </span>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <ul id="myUL"style="list-style-type: none; padding: 0px; margin: 0px;height: auto">
+
+      <div class="row container-fluid" id="myUL">
+          {% for row in rows %}
+
+          <li><div class="col-md-4">
+              {% if row[6] != None %}
+                  <a><img src="{{ row[6] }}" class="img-responsive"></a>
+              {% else %}
+              <a><img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive"></a>
+              {% endif %}
+
+            <h3 >{{ row[1] }}</h3>
+            <blockquote>
+              <p>{{ row[5] }}</p>
+              <footer>Someone famous</footer>
+            </blockquote>
+            <p></p>
+          </div></li>
+
+            {% endfor %}
+      </div>
+      </ul>
+        <div class="row navbar-inverse navbar-default navbar-fixed-bottom">
+          <div class="col-sm-6">
+            <h1 class="text-muted">GamesSapp</h1>
+            <p class="text-muted">Peter is the best.
+              <br>
+              <br>
+            </p>
+          </div>
+          <div class="col-sm-6">
+            <p class="text-info text-right">
+              <br>
+              <br>
+            </p>
+            <div class="row">
+              <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
+                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text"></i></a>
+                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-info"></i></a>
+                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-info"></i></a>
+                <a href="#"><i class="fa fa-3x fa-fw fa-github text-info"></i></a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 hidden-xs text-right">
+                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text"style="color: #FFFFFF"></i></a>
+                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"style="color: #FFFFFF"></i></a>
+                <a href="#"><i class="fa fa-3x fa-facebook fa-fw text-info"style="color: #FFFFFF"></i></a>
+                <a href="#"><i class="fa fa-3x fa-fw fa-github text-info"style="color: #FFFFFF"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </body>
+
+</html>
