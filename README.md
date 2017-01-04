@@ -1,6 +1,6 @@
 # gamesapp_0.5
 
-##Capabilities of the app
+##Desired capabilities of the app
 
 - a new user can be created
 - user can log in to an account
@@ -21,3 +21,6 @@
 - admins can post new content
 - users can rate games
 
+##What is the goal
+
+>To create a imdb - like platform where users can search, rate and get well aimed suggestions about games they may like. The platform should make users visit for articles, reviews and announcments, and should encourage organizers and creators willingly participate in it's creation. 
