@@ -24,3 +24,5 @@
 ##What is the goal
 
 >To create a imdb - like platform where users can search, rate and get well aimed suggestions about games they may like. The platform should make users visit for articles, reviews and announcments, and should encourage organizers and creators willingly participate in it's creation. 
+
+#Product ready for deployment - around March - April '17
