@@ -1,22 +1,19 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Gamesapp</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <title>post_it</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-      <link href="/static/clean-blog.min.css" rel="stylesheet">
-
-      <!--FONTS-->
-        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
     rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
-  </head>
-  <body {background-color:#28292C !important;}>
+
+</head>
+<body>
 <!--Navbar start -->
   <div class="navbar-inverse navbar-default navbar-static-top">
       <div class="container"style="color: #427A9E">
@@ -54,41 +51,45 @@
         </div>
       </div>
     </div>
-<!--Navbar end-->
-<!--Posts Generator -->
-    <div class="container">
-        <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
-            {% for post in posts %}
-                <div class="post-preview">
-
-                    <a href="post.html">
-                        <h2 class="post-title">
-                            {{ post[1] }}
-                        </h2>
-                        <h3 class="post-subtitle">
-                            {{ post[2] }}
-                        </h3>
-                    </a>
-                    <p class="post-meta">Posted by <a href="#">{{ post[3] }}</a></p>
-                    {% endfor %}
-                </div>
-
-                <!-- Pager -->
-                <ul class="pager">
-                    <li class="next">
-                        <a href="#">Older Posts &rarr;</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+</div>
 
 
-    </div>
-<!--Footer start-->
-    <footer>
+
+<form class="form-horizontal" method="post" action="/postit">
+<fieldset>
+
+
+<!-- Text input-->
+<div class="form-group" style="padding: 20px;">
+  <label class="col-md-4 control-label" for="textinput">Title</label>
+  <div class="col-md-4">
+  <input id="textinput" name="title" type="text" placeholder="What would u like to write about?" class="form-control input-md">
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textarea">Write about it</label>
+  <div class="col-md-4">
+    <textarea class="form-control" id="textarea" name="content">here</textarea>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Tags</label>
+  <div class="col-md-4">
+  <input id="textinput" name="tags" type="text" placeholder="gimme 'em" class="form-control input-md">
+          <button class="btn btn-default btn-block" type="submit">Submit</button>
+
+  </div>
+</div>
+</fieldset>
+</form>
+
+
+<!--Footer start -->
+ <footer class="navbar-fixed-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -124,6 +125,5 @@
         </div>
     </footer>
 
-
-  </body>
+</body>
 </html>

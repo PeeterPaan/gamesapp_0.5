@@ -9,22 +9,30 @@ app.secret_key = 'sikret ki'
 
 DATABASE = '/Users/PeterPan/Documents/gameapp/userslist.db'
 
+
 def database_command(command, *args):
     con = sql.connect('/Users/PeterPan/Documents/gameapp/userslist.db')
     cur = con.cursor()
     cur.execute(command, args)
     rows = cur.fetchall()
+    con.commit()
+    con.close()
+    gc.collect()
     return rows
+
+
 class user(object):
-    """Makes cute animals."""
-    # For initializing our instance objects
     def __init__(self, username, usertype):
         self.username = username
         self.type = usertype
 
-
-
-
+def login_check():
+    if session.get('logged_in'):
+        user.username = session['username']
+        user.type = database_command("select user_type from users WHERE username = ?", user.username)
+        return True
+    else:
+        return False
 
 class RegistrationForm(Form):
     username = TextField('Username', [validators.Length(min = 4, max = 20)])
@@ -45,14 +53,19 @@ def home():
 
 @app.route('/welcome')
 def tuna():
+    posts = database_command("select * from posts")
+
     if session.get('logged_in'):
         login = session['username']
         user.username = session['username']
-        database_command("select user_type from users WHERE username = ?", user.username)
-    else:
-        return render_template("welcome.html")
+        user.type = database_command("select user_type from users WHERE username = ?", user.username)
+        posts = database_command("select * from posts")
+        return render_template("welcome.html", login = login, type = user.type[0][0], posts = posts)
 
-    return render_template("welcome.html", login = login)
+
+    else:
+        return render_template("welcome.html", posts = posts)
+
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -151,7 +164,23 @@ def whatulike():
         flash('You are not logged in. Please log in to view this page')
         return redirect('welcome')
 
-#@app.route('/create', methods = ["GET","POST"])
+@app.route('/postit', methods = ["GET","POST"])
+def post_it():
+    if request.method == "POST" and login_check():
+        title = request.form['title']
+        content = request.form["content"]
+        database_command("insert into posts (post_title, post_content, post_writer) values (?,?,?)", *(title, content,
+                                                                                                    user.username,))
+        return redirect('/welcome')
+
+    elif login_check():
+        return render_template("postit.html")
+
+
+    else:
+        return redirect("login")
+
+
 
 
 if __name__ == "__main__":
