@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <title>post_it</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+    rel="stylesheet" type="text/css">
+      <link href="/static/clean-blog.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+{% include "navbar.html" %}
+
+
+
+<form class="form-horizontal" method="post" action="/postit">
+<fieldset>
+
+
+<!-- Text input-->
+<div class="form-group" style="padding: 20px;">
+  <label class="col-md-4 control-label" for="textinput">Title</label>
+  <div class="col-md-4">
+  <input id="textinput" name="title" type="text" placeholder="What would u like to write about?" class="form-control input-md">
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textarea">Write about it</label>
+  <div class="col-md-4">
+    <textarea class="form-control" id="textarea" name="content" placeholder="here"></textarea>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Tags</label>
+  <div class="col-md-4">
+  <input id="textinput" name="tags" type="text" placeholder="gimme 'em" class="form-control input-md">
+          <button class="btn btn-default btn-block" type="submit">Submit</button>
+
+  </div>
+</div>
+</fieldset>
+</form>
+
+
+{% include "footer.html" %}
+
+</body>
+</html>

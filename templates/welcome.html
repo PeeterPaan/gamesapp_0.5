@@ -7,103 +7,69 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+      <link href="/static/clean-blog.min.css" rel="stylesheet">
+
+      <!--FONTS-->
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
     rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
   </head>
   <body {background-color:#28292C !important;}>
-<!--Navbar start -->
-  <div class="navbar-inverse navbar-default navbar-static-top">
-      <div class="container"style="color: #427A9E">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/welcome"><span>GamesSapp</span></a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbar-ex-collapse">
-          <ul class="nav navbar-nav">
-        <li><a href="/table"> Table</a></li>
-        <li><a href="/whatulike">Whatulike</a></li>
-
-
-          </ul>
-        </li>
-      </ul>
-            <ul class="nav navbar-nav navbar-right">
-          {% if login %}
-            <p class="navbar-text">Signed in as {{ login }}</p>
-            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
-
-          {% else %}
-            <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-          {% endif %}
-          </ul>
-        </div>
+  {% with user=login %}
+{% include "navbar.html" %}
+  {% endwith %}
+  {% for message in get_flashed_messages() %}
+      <div class="containter-fluid text-center">
+      <h4>{{ message }}</h4>
       </div>
-    </div>
-<!--Navbar end-->
+  {% endfor %}
+    <header class="intro-header"style="background: url(http://i.imgur.com/3ZwfxBa.jpg); background-size: cover">
+      <div class="container text-center">
+            <div class ="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Welcome to GamesSapp {% if login %}, {{ login }}{% endif %}</h1>
+                    </div>
+                </div>
+            </div>
+</header>
+  <!--Posts Generator -->
+
     <div class="container">
-    <div class="page-header">
-    {% if login %}
-      <h1>Welcome to Gamesapp{{", "}}{{ login}}!</h1>
+        <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+            {% for post in posts[::-1]%}
+                <div class="post-preview">
+
+                    <a href="{{ url_for('post', post_name=post[1]) }}">
+                        <h2 class="post-title">
+                            {{ post[1] }}
+                        </h2>
+                        <h3 class="post-subtitle">
+                            {{ post[2] }}
+                        </h3>
+                    </a>
+                    <p class="post-meta">Posted by <a href="{{ url_for('user', nickname=post[3]) }}">{{ post[3] }}</a></p>
+                    {% endfor %}
+                </div>
+
+
+                <!-- Pager -->
+                <ul class="pager">
+                    <li class="next">
+                        <a href="#">Older Posts &rarr;</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    {% else %}
-          <h1>Welcome to Gamesapp!</h1>
-        </div>
+    </div>
 
-    {% endif %}
-    <div class="row">
-        <div class="col-sm-4">
-
-        </div>
-        <div class="col-sm-4">
-
-
-        </div>
-        <div class="col-sm-4">
-
-
-        </div>
 
     </div>
-<!--Footer start-->
- <div class="row navbar-inverse navbar-default navbar-fixed-bottom">
-          <div class="col-sm-6">
-            <h1 class="text-muted">GamesSapp</h1>
-            <p class="text-muted">Peter is the best.
-              <br>
-              <br>
-            </p>
-          </div>
-          <div class="col-sm-6">
-            <p class="text-info text-right">
-              <br>
-              <br>
-            </p>
-            <div class="row">
-              <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
-                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text"></i></a>
-                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-info"></i></a>
-                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-info"></i></a>
-                <a href="#"><i class="fa fa-3x fa-fw fa-github text-info"></i></a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 hidden-xs text-right">
-                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text"style="color: #FFFFFF"></i></a>
-                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"style="color: #FFFFFF"></i></a>
-                <a href="#"><i class="fa fa-3x fa-facebook fa-fw text-info"style="color: #FFFFFF"></i></a>
-                <a href="#"><i class="fa fa-3x fa-fw fa-github text-info"style="color: #FFFFFF"></i></a>
-              </div>
-            </div>
-          </div>
-  </div>
-
+{% include "footer.html" %}
 
   </body>
 </html>

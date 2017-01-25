@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+      <link href="/static/clean-blog.min.css" rel="stylesheet">
+
+      <!--FONTS-->
+    <link href="static/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  {% with user=login %}
+{% include "navbar.html" %}
+  {% endwith %}
+  <header class="intro-header"style="background: url(http://i.imgur.com/NUB42V8.jpg); background-size: cover">
+      <div class="container text-center">
+            <div class ="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>{{ article[0][1] }}</h1>
+                        <h2 class="subheading">{{ article[0][2] }}</h2>
+                        <span class="meta">Posted by <a href="{{ url_for('user', nickname=article[0][3]) }}">{{ article[0][3] }}</a> on August 24, 2014</span>
+                    </div>
+                </div>
+            </div>
+</header>
+      <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                   <h1>Articles content</h1>
+                </div>
+            </div>
+        </div>
+    </article>
+{% include "footer.html" %}
+
+
+</body>
+</html>

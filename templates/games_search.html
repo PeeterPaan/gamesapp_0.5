@@ -8,9 +8,8 @@
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
     rel="stylesheet" type="text/css">
-  </head>
-    <script>
-function myFunction() {
+    <script src="/static/bootstrap-rating-input.min.js" type="text/javascript"></script>
+<script>function myFunction() {
     // Declare variables
     var input, filter, ul, li, a, i;
     input = document.getElementById('myInput');
@@ -20,7 +19,7 @@ function myFunction() {
 
     // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("h3")[0];
+        a = li[i].getElementsByTagName("h4")[0];
         if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
             li[i].style.display = "";
         } else {
@@ -28,42 +27,18 @@ function myFunction() {
         }
     }
 }
-    </script>
+</script>
+      <style>
+      .img-thumbnail {
+    border: 0 none;
+    box-shadow: none;
+}
+      </style>
+  </head>
+
 
   <body style="padding-bottom: 70px;">
-    <div class="navbar-inverse navbar-default navbar-static-top">
-      <div class="container"style="color: #427A9E">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/welcome"><span>GamesSapp</span></a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbar-ex-collapse">
-          <ul class="nav navbar-nav">
-        <li><a href="/table"> Table</a></li>
-        <li><a href="/whatulike">Whatulike</a></li>
-
-
-          </ul>
-        </li>
-      </ul>
-            <ul class="nav navbar-nav navbar-right">
-          {% if login %}
-            <p class="navbar-text">Signed in as {{ login }}</p>
-            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
-
-          {% else %}
-            <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-          {% endif %}
-          </ul>
-        </div>
-      </div>
-    </div>
+{% include "navbar.html" %}
     <div class="section">
       <div class="container">
         <div class="row">
@@ -97,58 +72,47 @@ function myFunction() {
       <ul id="myUL"style="list-style-type: none; padding: 0px; margin: 0px;height: auto">
 
       <div class="row container-fluid" id="myUL">
+                <form method="post" action="/whatulike/">
+
           {% for row in rows %}
 
-          <li><div class="col-md-4">
+          <li><div class="col-md-4 text-center"style="height: 350px;">
               {% if row[6] != None %}
-                  <a><img src="{{ row[6] }}" class="img-responsive"></a>
+
+                  <a><img src="{{"http://www.rebel.pl"+ row[6] }}" class="img-thumbnail img-responsive center"style="max-height: 150px;"></a>
               {% else %}
               <a><img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive"></a>
               {% endif %}
+          <div class="container-fluid text-center">
+            <h4 class="text-center" >{{ row[1] }}
+                <h4 class="text-center"> <input type="number" name="{{ row[1] }}" id="some_id" class="rating"
+                       data-icon-lib="fa" data-active-icon="fa-star" data-inactive-icon="fa-star-o"
+                    {% for rating in user_rating  %}{% if rating[0]==row[1] %} value="{{ rating[1] }}"{% endif %}{% endfor %}data-empty-value="0" />
+                </h4>
 
-            <h3 >{{ row[1] }}</h3>
+            </h4>
             <blockquote>
               <p>{{ row[5] }}</p>
               <footer>Someone famous</footer>
             </blockquote>
-            <p></p>
-          </div></li>
+
+          </li>
 
             {% endfor %}
       </div>
       </ul>
-        <div class="row navbar-inverse navbar-default navbar-fixed-bottom">
-          <div class="col-sm-6">
-            <h1 class="text-muted">GamesSapp</h1>
-            <p class="text-muted">Peter is the best.
-              <br>
-              <br>
-            </p>
-          </div>
-          <div class="col-sm-6">
-            <p class="text-info text-right">
-              <br>
-              <br>
-            </p>
-            <div class="row">
-              <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
-                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text"></i></a>
-                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-info"></i></a>
-                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-info"></i></a>
-                <a href="#"><i class="fa fa-3x fa-fw fa-github text-info"></i></a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 hidden-xs text-right">
-                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text"style="color: #FFFFFF"></i></a>
-                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"style="color: #FFFFFF"></i></a>
-                <a href="#"><i class="fa fa-3x fa-facebook fa-fw text-info"style="color: #FFFFFF"></i></a>
-                <a href="#"><i class="fa fa-3x fa-fw fa-github text-info"style="color: #FFFFFF"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                  <div class="container-fluid text-center"> <input type="submit" ></div>
+
+</div></div>                </form>
+<div class="text-center">
+<ul class="pagination center">
+    {% for number in range (1, pages_number)%}
+  <li><a href="{{ url_for('whatulike', page = number*20 )}}">{{ number }}</a></li>
+{% endfor %}
+    <li><a href="#">Last</a> </li>
+</ul>
+    </div>
+ {% include "footer.html" %}
   </body>
 
 </html>

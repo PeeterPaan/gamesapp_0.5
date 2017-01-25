@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ username }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+{% with user=nickname %}
+{% include "navbar.html" %}
+{% endwith %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 text-center"style="background-color:#235789; color:#FDFFFC ">
+            <img src="{{ avatar }}" class="img-responsive" style="padding-top: 20px">
+
+            <h4>Contact information:</h4>
+            <p><span class="glyphicon glyphicon-envelope"></span> {{ email }}</p>
+            <p><span class="glyphicon glyphicon-phone"></span> </p>
+            <h3></h3>
+        </div>
+        <div class="col-md-6 col-md-offset-3"style="padding-top: 50px;">
+            <h3>Other thing</h3>
+
+        </div>
+    </div>
+</div>
+
+
+{% include "footer.html" %}
+
+</body>
+</html>

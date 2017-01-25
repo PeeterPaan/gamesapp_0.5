@@ -1,0 +1,38 @@
+<!-- Navbar Start -->
+  <div class="navbar-inverse navbar-default navbar-static-top">
+      <div class="container"style="color: #427A9E">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/welcome"><span>GamesSapp</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+          <ul class="nav navbar-nav">
+        <li><a href="/table"> Table</a></li>
+        <li><a href="/whatulike">Whatulike</a></li>
+
+
+          </ul>
+        </li>
+      </ul>
+            <ul class="nav navbar-nav navbar-right">
+          {% if login %}
+              {% if type == "admin" %}
+            <li><a href="/postit"><span class="glyphicon glyphicon-pencil"></span> New post</a></li>
+              {% endif %}
+            <p class="navbar-text">Signed in as <a href="{{ url_for('user', nickname=user) }}"class="text-muted">{{ login }}</a> </p>
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+          {% else %}
+            <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+          {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+<!--Navbar end-->

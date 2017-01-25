@@ -7,74 +7,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+    rel="stylesheet" type="text/css">
     </head>
 <body margin:0px; padding:0px;>
 <!--Navbar start -->
-  <div class="navbar-inverse navbar-default navbar-static-top">
-      <div class="container"style="color: #427A9E">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/welcome"><span>GamesSapp</span></a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbar-ex-collapse">
-          <ul class="nav navbar-nav">
-        <li><a href="/table"> Table</a></li>
-        <li><a href="/whatulike">Whatulike</a></li>
+ {% include "navbar.html" %}
 
-
-          </ul>
-        </li>
-      </ul>
-            <ul class="nav navbar-nav navbar-right">
-          {% if login %}
-            <p class="navbar-text">Signed in as {{ login }}</p>
-            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
-
-          {% else %}
-            <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-          {% endif %}
-          </ul>
-        </div>
-      </div>
-    </div>
-<!--Footer start-->
- <div class="row navbar-inverse navbar-default navbar-fixed-bottom">
-          <div class="col-sm-6">
-            <h1 class="text-muted">GamesSapp</h1>
-            <p class="text-muted">Peter is the best.
-              <br>
-              <br>
-            </p>
-          </div>
-          <div class="col-sm-6">
-            <p class="text-info text-right">
-              <br>
-              <br>
-            </p>
-            <div class="row">
-              <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
-                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text"></i></a>
-                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-info"></i></a>
-                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-info"></i></a>
-                <a href="#"><i class="fa fa-3x fa-fw fa-github text-info"></i></a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 hidden-xs text-right">
-                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text"style="color: #FFFFFF"></i></a>
-                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"style="color: #FFFFFF"></i></a>
-                <a href="#"><i class="fa fa-3x fa-facebook fa-fw text-info"style="color: #FFFFFF"></i></a>
-                <a href="#"><i class="fa fa-3x fa-fw fa-github text-info"style="color: #FFFFFF"></i></a>
-              </div>
-            </div>
-          </div>
-  </div>
 <div class="row">
     <div class="form-signin form-group col-md-6 col-md-offset-3" >
             <form class="form-signin col-md-6 col-md-offset-3" action="" method="post" >
@@ -92,5 +31,6 @@
             {% endfor %}
         </div>
     </div>
+{% include "footer.html" %}
     </body>
 </html>
